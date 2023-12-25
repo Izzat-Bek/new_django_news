@@ -10,8 +10,8 @@ send_sms_bot_your_channel
 cd news/nw
 nano bot.py
 #
-channel_id = '@izzat_ansajfsnafis' - my channel \n
-channel_id = 'your_ID' or 'link of channel'  \n
+channel_id = '@izzat_ansajfsnafis' - my channel #
+channel_id = 'your_ID' or 'link of channel'  #
 
 
 
