@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    background-color: rgb(87, 79, 79);
+}
+body{
+    background-color: rgb(87, 79, 79);
+}
+@font-face{
+    font-family: Gilroy;
+    src: url(../font/Gilroy-UltraLight.ttf);
+}
+@font-face{
+    font-family: Merriweather;
+    src: url(../font/MERRIWEATHER-BOLD.TTF)
+}
+body{
+    max-width: 1920px;
+    background-color: #FAFDFF;
+}
+
+.menu ul {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 45px 0 0 300px;
+}
+.menu ul li:nth-child(1) a{
+    display: flex;
+    align-items: center;
+}
+.menu ul li:nth-child(1) img{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.menu ul li a{
+    color: #000;
+    font-family: Gilroy;
+    text-align: center;
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 80px;
+    padding: 10px;
+    cursor: pointer;
+}
+.menu ul li a:hover{
+    color: #3772FF;
+    transition: all 0.5s;
+}
+
+.num{
+    color: #474F62;
+font-family: Merriweather;
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: center;
+margin-top: 200px;
+}
+
+
+.dropbtn {
+    background-color: rgb(87, 79, 79);
+    color: black;
+    font-family: Gilroy;
+    padding: 16px;
+    border: none;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 100px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Gilroy;
+}
+
+.dropdown-content a:hover {
+background-color: white;
+color: rgb(87, 79, 79);
+
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {
+background-color: white;
+color: rgb(87, 79, 79);
+transition: all 1s;
+
+}
+
+
+/* ---------Body---------- */
+
+.body1{
+    border: 1px solid black;
+    padding-top: 40px;
+    padding-left: 200px;
+    padding-right: 300px;
+}
+
+.body1 img{
+    width: 1300px;
+    border-radius: 100px;
+}
+
+.body1 p{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    width: 1300px;
+}
+
+.body1 h1{
+    margin-top: 20px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 60px;
+
+}
+
+.checked{
+    color: yellow;
+}
+
+.rating{
+    display: flex;
+}
+
+.rating h1{
+    max-width: 400px;
+    margin-left: 10px;
+}
+
+.rating p{
+    max-width: 400px;
+    margin-left: 80px;
+    margin-top: 30px;
+}
+
+
+/* ---------Comment--------- */
+
+.comment{
+    padding-top: 20px;
+    width: auto;
+}
+
+.comment h1{
+    margin-left: 600px;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+.add-comment{
+    font-family: Gilroy;
+    font-size: 30px;
+}

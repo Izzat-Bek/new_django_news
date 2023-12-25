@@ -1,0 +1,209 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/idHvBLStOM.jpeg' %}" alt="">
+                    <p>Yangiliklar</p>
+                </a>
+            </li>
+            <li><a href="">Fakultetlar haqida</a></li>
+            <li><a href="">Ta’lim</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">Category</button>
+                <div class="dropdown-content">
+                    {% for i in categories %}
+                    <a href="{% url 'category' i.id %}"> {{ i.name }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li style="margin-lift: 150px">
+                    <a href="">
+                        {{ user.username }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="body1">
+        <h1> {{ post.title }} </h1>
+        {% if post.image1 %}
+            <img src="{{ post.image1.url }}" alt="">
+        {% else %}
+            <img src="{% static 'img/birinchi oyna orqa fon.png' %}" alt="">
+        {% endif %}
+        {% if post.content1 %}
+            <p> {{ post.content1|safe }} </p>
+        {% endif %}
+        <br>
+        {% if post.image2 %}
+            <img src="{{ post.image2.url }}" alt="">
+        {% endif %}
+        {% if post.content2 %}
+            <p> {{ post.content2|safe }} </p>
+        {% endif %}
+        <br>
+        {% if post.image3 %}
+            <img src="{{ post.image3.url }}" alt="">
+        {% endif %}
+        {% if post.content3 %}
+            <p> {{ post.content3|safe }} </p>
+        {% endif %}
+        <br>
+        {% if post.image4 %}
+            <img src="{{ post.image4.url }}" alt="">
+        {% endif %}
+        {% if post.content4 %}
+            <p> {{ post.content4|safe }} </p>
+        {% endif %}
+        <br>
+        <div class="rating">
+            <h1>
+                Otsenka - {{ rating }} |
+            </h1>
+            <h1>
+                Obshayay otsenka - {{ ball }} |
+            </h1>
+            <h1>
+                Kolichestvo lyudey - {{ count }}
+            </h1>
+            <p>
+                {{ post.created_at }}
+            </p>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                {% if rating == 5 %} 
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star checked"></span> </a>
+                {% elif rating == 4 %}
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 3 %}
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 2 %}
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 1 %}
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 0 %}
+                <a href="{% url 'add_star' post.id user.id 1 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 2 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 3 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 4 %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'add_star' post.id user.id 5 %}"> <span class="fa fa-star"></span> </a>
+                {% endif %}
+            {% else %}
+                {% if rating == 5 %} 
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                {% elif rating == 4 %}
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 3 %}
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 2 %}
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 1 %}
+                <a href="{% url 'login' %}"> <span class="fa fa-star checked"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url  'login'%}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                {% elif rating == 0 %}
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                <a href="{% url 'login' %}"> <span class="fa fa-star"></span> </a>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="comment">
+            <h1> Comment </h1>
+            {% for i in comment %}
+                <br>
+                <p> author - {{i.username}} </p>
+                <p> {{i.content|safe}} </p>
+                <p> {{i.created_at}} </p>
+                <br>
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        <div class="add-comment"> 
+            {% if user.is_authenticated %}
+                <h2>
+                    <a href="{% url 'comment-username' post.id user.id %}"> 
+                        Add Comment 
+                    </a>
+                </h2>
+            {% else %}
+                <h2>
+                    <a href="{% url 'comment' post.id %}"> 
+                        Add Comment 
+                    </a>
+                </h2>
+            {% endif %}                
+            <br>
+            <br>
+            <br>    
+        </div>
+    </div>
+</body>
+</html>

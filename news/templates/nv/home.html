@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/idHvBLStOM.jpeg' %}" alt="">
+                    <p>Yangiliklar</p>
+                </a>
+            </li>
+            <li><a href="">Fakultetlar haqida</a></li>
+            <li><a href="">Ta’lim</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">Category</button>
+                <div class="dropdown-content">
+                    {% for i in categories %}
+                    <a href="{% url 'category' i.id %}"> {{ i.name }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li style="margin-lift: 150px">
+                    <a href="">
+                        {{ user.username }}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% block content %}
+    {% if name == 'cat' %}
+    <h1 class="name"> {{ cat.name }} </h1>
+    {% endif %}
+
+    <div class="navbar">
+        {% for i in post %}
+        <div class="box1">
+            {% if i.image1 %}
+            <img src="{{ i.image1.url }}" alt="">
+            {% else %}
+            <img src="{% static 'img/birinchi oyna orqa fon.png' %}" alt="">
+            {% endif %}
+            <h3>
+                <a href="{% url 'article' i.id %}">
+                    {{ i.title }}
+                </a>
+            </h3>
+            
+            <p> {{ i.created_at }} </p>
+        </div>
+        {% endfor %}
+    {% endblock %}
+    </div>
+</body>
+</html>

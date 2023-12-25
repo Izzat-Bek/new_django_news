@@ -1,0 +1,5 @@
+   login             password
+1) kali              Fizika_2010
+2) windows           qawsedrf1234
+3) admin             admin
+
