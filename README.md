@@ -2,7 +2,7 @@
  
 pip install -r requirements.txt
 #
-username = username.txt
+username = login.txt
 
 #
 send_sms_bot_your_channel
